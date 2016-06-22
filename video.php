@@ -21,17 +21,16 @@
         closedir($dh);
       }
     }
-
-    $requence = "";
+    asort($videoname);
+    $requence[] = $videodir;
     foreach ($videoname as $value) {
       # code...
       if ($value=="defvideo") {
-        # code...
         continue;
       } else {
-        # code...
-        $requence .= "<p>" . $value . "</p>";
+        $requence[] = $value;
       }
     }
-    echo $requence;
+    header('Content-Type: application/json');
+    echo json_encode($requence);
 ?>
