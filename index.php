@@ -1,77 +1,92 @@
 <?php
-  include ("name.php");
- ?>
+   include("DBfolder/connect.php");
+   $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+   if (mysqli_connect_errno($db)) {
+     echo "連結 MySQL 失敗: " . mysqli_connect_error();
+   } else {
+     # code...
+     echo "連接 MySQL 成功<br>";
+   }
+   session_start();
+
+   if (mysqli_query($db,"SHOW tables")) {
+     # code...
+     echo "true SHOW tables<br>";
+     $result = mysqli_query($db,"SHOW tables");
+     $show = mysqli_fetch_row($result);
+     print_r( $show );
+
+   }
+
+   if (mysqli_query($db,"EXPLAIN movie_users")) {
+     # code...
+     echo "true EXPLAIN movie_users";
+   }
+
+   if($_SERVER["REQUEST_METHOD"] == "POST") {
+      // username and password sent from form
+
+      $username = mysqli_real_escape_string($db,$_POST['username']);
+      $password = mysqli_real_escape_string($db,$_POST['password']);
+
+      $sql = "SELECT * FROM movie_users WHERE user_login = '$username' and user_pass = '$password'";
+      $result = mysqli_query($db,$sql);
+      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+      //$active = $row['user_status'];
+      //$error123 = "user name";
+      echo "<br>";
+      print_r( $result );
+      echo "<br>";
+      print_r( $row );
+      echo "<br>";
+      $count = $row[ID];
+      echo $count;
+      // If result matched $username and $password, table row must be 1 row
+
+      if($count != 0) {
+         //session_register("username");
+         $_SESSION['login_user'] = $username;
+         echo "go to ";
+         //header("location: http://movie.technologyofkevin.com/movie.php");
+      }else {
+         $error = "Your Login Name or Password is invalid";
+      }
+   }
+?>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <title>絕對低調</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script type="text/javascript">
-    function loadvideo( videoname ){
-      var xmlhttp=new XMLHttpRequest();
-      xmlhttp.onreadystatechange=function(){
-        if (xmlhttp.readyState==4 && xmlhttp.status==200){
-          var returntitle = JSON.parse(xmlhttp.responseText);
-
-          document.getElementById("videolist").innerHTML = buttoncreate(returntitle);
-        }
-      }
-      xmlhttp.open("GET","video.php?V=" + videoname ,true);
-      xmlhttp.send();
-    }
-
-    function buttoncreate( arr ){
-      var returnbutton = "";
-      var path = arr[0].replace("./","");
-      for (var i = 1; i < arr.length; i++) {
-        var before = "<button type='button' onclick=changevideosrc('" + path + arr[i] + "')>";
-        var after = "</button>";
-        var stringvalue = arr[i];
-        returnbutton = returnbutton.concat(before,stringvalue,after);
-      }
-      return returnbutton;
-    }
-
-    function changevideosrc( newsrc ){
-      document.getElementById('animationvideo_source').src = newsrc;
-      document.getElementById("animationvideo").load();
-    }
-    </script>
 </head>
 
 <body>
   <header>
-    <h1>這是私人動漫天地</h1>
-    <p>請不要任意洩露密碼，裡面資料會讓我們都死翹翹，謝謝</p>
+    <h1>系統登入</h1>
+    <p>為了讓創始者Kevin更加安全，請用帳號密碼登入，如果你沒有帳號密碼，麻煩跟我申請</p>
   </header>
-<div class="sidebar">
-<h2>Animation List</h2>
-<?php
-    echo ("<div id='animationlist'>");
-    $postnum = 1;
-    foreach (glob("./video/*") as $videoname){
-        $postid = "post" . $postnum;
-        $videoname = str_replace("./video/","",$videoname);
-        $videochinesename = $videochangename[$videoname];
-        $videoname = "'" . $videoname . "'";
-        echo ("<h3 id='" . $postid . " videotitle'>");
-        echo ( $videochinesename );
-        echo ("</h3>");
-        echo ('<button type="button" onclick="loadvideo( ' . $videoname . ' )">load video</button>');
-        $postnum++;
-        }
-    echo ("</div><!-- .animationlist -->");
-?>
-<div id="myDiv"></div>
-</div><!-- .sidebar -->
 
-<div id="videopart" class="videopart masterbar">
-  <video id="animationvideo" controls  width="720" height="480">
-    <source id="animationvideo_source" src="big_buck_bunny.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-  </video>
-  <div id="videolist"></div>
+  <div align = "center">
+   <div style = "width:300px; border: solid 1px #333333; " align = "left">
+      <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login</b></div>
+
+      <div style = "margin:30px">
+
+         <form action = "" method = "post">
+            <label>UserName  :</label><input type = "text" name = "username" class = "box"/><br /><br />
+            <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
+            <input type = "submit" value = " Submit "/><br />
+         </form>
+
+         <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
+         <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $sql; ?></div>
+
+      </div>
+
+   </div>
+
 </div>
+
 
 </body>
