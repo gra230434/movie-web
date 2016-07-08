@@ -2,13 +2,14 @@
    include('config.php');
    session_start();
 
-   $user_check = $_SESSION['login_user'];
+   $user_name = $_SESSION['login_user'];
 
-   $ses_sql = mysqli_query($db,"select username from admin where username = '$user_check' ");
+   //$ses_sql = mysqli_query($db,"select user_login from mo where username = '$user_check' ");
 
-   $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
+   //$row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
 
-   $login_session = $row['username'];
+   //$login_session = $row['user_login'];
+   $login_session = $user_name;
 
    if(!isset($_SESSION['login_user'])){
       header("location:index.php");

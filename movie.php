@@ -1,6 +1,6 @@
 <?php
   include ("name.php");
-  //include ("DBfolder/session.php");
+  include ("DBfolder/session.php");
 ?>
 
 <head>
