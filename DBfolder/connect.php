@@ -1,6 +1,7 @@
 <?php
 
 define('DB_SERVER', 'localhost');
+
 define('DB_USERNAME', 'moviesysadmin');
 define('DB_PASSWORD', 'xxxxxxxxxxxxx');
 define('DB_DATABASE', 'moviesystem');
