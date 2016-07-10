@@ -29,6 +29,7 @@ html {
 
 body {
 	margin: 0;
+	background-color: black;
 }
 
 article,
@@ -143,19 +144,57 @@ optgroup {
 }
 
 /**
- * 2.0 - Sidebar
+ * 2.0 sitepage
  *
  */
- .sidebar {
-   width: 25%;
-   float: left;
- }
+.sitepage {
+	width: 80%;
+	margin: 20px auto;
+}
 
- /**
-  * 2.0 - Sidebar
-  *
-  */
-  .masterbar {
-    width: 74%;
-    float: left;
-  }
+#loginpagebody {
+	background-image: url("/images/indexlogin.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+/**
+ * 3.0 - Sidebar
+ *
+ */
+.loginbox {
+	width:360px;
+	border: solid 1px #333333;
+	background-color: rgba(255, 255, 255, 0.7);
+}
+
+.loginboxtitle {
+	background-color:#333333;
+	color:#FFFFFF;
+	font-size: 25px;
+	padding: 10px;
+	text-align: center;
+}
+
+.logininput {
+	padding: 8px;
+	display: block;
+	border: none;
+	border-bottom: 1px solid #3B3B3B;
+	width: 100%;
+	background-color: rgba(255,255,255,0);
+}
+
+/**
+ * 4.0 - Sidebar
+ *
+ */
+.sidebar {
+	width: 25%;
+  float: left;
+}
+
+.masterbar {
+  width: 74%;
+  float: left;
+}
