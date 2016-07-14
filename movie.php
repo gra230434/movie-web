@@ -28,7 +28,7 @@
       for (var i = 1; i < arr.length; i++) {
         var before = "<button type='button' onclick=changevideosrc('" + path + arr[i] + "')>";
         var after = "</button>";
-        var stringvalue = arr[i].substr(1,2);
+        var stringvalue = arr[i].substr(0,2);
         returnbutton = returnbutton.concat(before,stringvalue,after);
       }
       return returnbutton;
@@ -42,38 +42,40 @@
 </head>
 
 <body>
-  <header>
-    <h1>這是私人動漫天地</h1>
-    <p>請不要任意洩露密碼，裡面資料會讓我們都死翹翹，謝謝</p>
-    <p>Welcome <?php echo $login_session; ?></p>
-  </header>
-<div class="sidebar">
-<h2>Animation List</h2>
-<?php
-    echo ("<div id='animationlist'>");
-    $postnum = 1;
-    foreach (glob("./video/*") as $videoname){
-        $postid = "post" . $postnum;
-        $videoname = str_replace("./video/","",$videoname);
-        $videochinesename = $videochangename[$videoname];
-        $videoname = "'" . $videoname . "'";
-        echo ("<h3 id='" . $postid . " videotitle'>");
-        echo ( $videochinesename );
-        echo ("</h3>");
-        echo ('<button type="button" onclick="loadvideo( ' . $videoname . ' )">load video</button>');
-        $postnum++;
+  <div class="sitepage">
+    <header>
+      <h1>這是私人動漫天地</h1>
+      <p>請不要任意洩露密碼，裡面資料會讓我們都死翹翹，謝謝</p>
+      <p>Welcome <?php echo $login_session; ?></p>
+    </header>
+    <div class="sidebar">
+      <h2>Animation List</h2>
+      <?php
+        echo ("<div id='animationlist'>");
+        $postnum = 1;
+        foreach (glob("./video/*") as $videoname){
+          $postid = "post" . $postnum;
+          $videoname = str_replace("./video/","",$videoname);
+          echo ("<h3 id='" . $postid . " videotitle'>");
+          echo ( $videoname );
+          echo ("</h3>");
+          $videoname = str_replace("./video/","",$videoname);
+          $videoname = "'" . $videoname . "'";
+          echo ('<button type="button" onclick="loadvideo( ' . $videoname . ' )">load video</button>');
+          $postnum++;
         }
-    echo ("</div><!-- .animationlist -->");
-?>
-<div id="myDiv"></div>
-</div><!-- .sidebar -->
+        echo ("</div><!-- .animationlist -->");
+        ?>
+      <div id="myDiv"></div>
+    </div><!-- .sidebar -->
 
-<div id="videopart" class="videopart masterbar">
-  <video id="animationvideo" controls  width="720" height="480">
-    <source id="animationvideo_source" src="big_buck_bunny.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-  </video>
-  <div id="videolist"></div>
-</div>
+    <div id="videopart" class="videopart masterbar">
+      <video id="animationvideo" controls  width="720" height="480">
+        <source id="animationvideo_source" src="big_buck_bunny.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div id="videolist"></div>
+    </div>
 
+  </div>
 </body>
