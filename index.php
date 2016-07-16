@@ -24,6 +24,8 @@
    }
 ?>
 
+<!DOCTYPE html>
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -32,23 +34,27 @@
 </head>
 
 <body id="loginpagebody">
-  <div class="sitepage">
 
-    <div align = "center">
-      <div class="loginbox" align = "left">
-        <div class="loginboxtitle"><b>Login</b></div>
+  <div class="intoweb">
+    <div class="loginbox" align = "left">
+      <div class="loginboxtitle"><b>Login</b></div>
 
-        <div style = "margin:30px">
-          <form action = "" method = "post">
-            <label>UserName  :</label><input type = "text" name = "username" class = "logininput"/><br /><br />
-            <label>Password  :</label><input type = "password" name = "password" class = "logininput" /><br/><br />
-            <input type = "submit" value = " Submit "/><br />
-          </form>
-          <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
-        </div>
+      <div style = "margin:30px">
+        <form action = "" method = "post" id="login_form">
+          <p><label for="username">UserName</label></p><input type="text" name="username" class="logininput" />
+          <p><label for="password">Password</label></p><input type="password" name="password" class="logininput" />
+	</form>	
 
+	<div class="loginsubmit">
+	  <button type="submit" form="login_form" value="Submit" style="left:0;">登入</button>
+          <button type="button" style="right:0;">註冊</button>
+	</div>
+        
+        <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
       </div>
-    </div><!-- center -->
 
-  </div>
+    </div>
+  </div><!-- intoweb -->
+
 </body>
+</html>

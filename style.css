@@ -7,8 +7,9 @@
  * Table of Contents
  *
  * 1.0 - Normalize
- * 2.0 - Sidebar
- * 3.0 - Masterbar
+ * 2.0 - Sidepage
+ * 3.0 - loginpage
+ * 4.0 - Masterbar
  */
 
 /* 導入google字體 */
@@ -29,7 +30,7 @@ html {
 
 body {
 	margin: 0;
-	background-color: black;
+	background-color: white;
 }
 
 article,
@@ -153,36 +154,80 @@ optgroup {
 }
 
 #loginpagebody {
+	width: 100%;
+	height: 100vh;
 	background-image: url("/images/indexlogin.jpg");
 	background-repeat: no-repeat;
 	background-size: 100%;
+	position: relative;
 }
 
 /**
- * 3.0 - Sidebar
+ * 3.0 - loginpage
  *
  */
+.intoweb {
+	width: 400px;
+	height: 350px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	margin: auto;
+}
 .loginbox {
-	width:360px;
-	border: solid 1px #333333;
-	background-color: rgba(255, 255, 255, 0.7);
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
+.loginbox p {
+	margin: 10px 0 5px;
 }
 
 .loginboxtitle {
-	background-color:#333333;
+	background-color: #457EE8;
 	color:#FFFFFF;
 	font-size: 25px;
-	padding: 10px;
+	padding: 15px 10px;
 	text-align: center;
 }
 
-.logininput {
+.loginbox input[type="text"], .loginbox input[type="password"] {
 	padding: 8px;
 	display: block;
 	border: none;
 	border-bottom: 1px solid #3B3B3B;
-	width: 100%;
+	width: calc( 100% - 16px );
 	background-color: rgba(255,255,255,0);
+}
+
+.loginsubmit {
+	margin: 20px 0;
+	height: 34px;
+	width: 100%;
+	border-radius: 5px;
+	background-color: #457EE8;
+	border-top: 3px solid #B3D0FF;
+	border-bottom: 3px solid #B3D0FF;
+	float: left;
+	position: relative;
+}
+
+.loginbox button {
+	width: calc( 50% - 0.5px );
+	height: 40px;
+	background-color: #B3D0FF;
+	border: 0;
+	border-radius: 3px;
+	position: absolute;
+	top: -3px;
+	transition: all .2s;
+}
+
+.loginbox button:hover {
+	color: white;
+	background-color: #2149A0;
 }
 
 /**
@@ -191,10 +236,10 @@ optgroup {
  */
 .sidebar {
 	width: 25%;
-  float: left;
+ 	float: left;
 }
 
 .masterbar {
-  width: 74%;
-  float: left;
+ 	width: 74%;
+ 	float: left;
 }

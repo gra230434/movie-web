@@ -2,7 +2,8 @@
   include ("name.php");
   include ("DBfolder/session.php");
 ?>
-
+<!DOCTYPE html>
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -46,7 +47,7 @@
     <header>
       <h1>這是私人動漫天地</h1>
       <p>請不要任意洩露密碼，裡面資料會讓我們都死翹翹，謝謝</p>
-      <p>Welcome <?php echo $login_session; ?></p>
+      <p>Welcome <?php echo $login_session; ?> <a href="logout.php">登出</a></p>
     </header>
     <div class="sidebar">
       <h2>Animation List</h2>
@@ -79,3 +80,4 @@
 
   </div>
 </body>
+</html>
