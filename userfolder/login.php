@@ -1,33 +1,24 @@
 <?php
-   include("config.php");
+   include("DBfolder/connect.php");
    session_start();
-
-function movie_login($username,$userpass){
-  
-}
 
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form
+      $username = mysqli_real_escape_string($db,$_POST['username']);
+      $password = mysqli_real_escape_string($db,$_POST['password']);
 
-      $myusername = mysqli_real_escape_string($db,$_POST['username']);
-      $mypassword = mysqli_real_escape_string($db,$_POST['password']);
-
-      $sql = "SELECT ID FROM movie_users WHERE user_login = '$myusername' and user_pass = '$mypassword'";
+      $sql = "SELECT * FROM movie_users WHERE user_login = '$username' and user_pass = '$password'";
       $result = mysqli_query($db,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
+      $count = mysqli_num_rows( $result );
 
-      $count = mysqli_num_rows($result);
-
-      // If result matched $myusername and $mypassword, table row must be 1 row
-
+      // If result matched $username and $password, table row must be 1 row
       if($count == 1) {
-         session_register("myusername");
-         $_SESSION['login_user'] = $myusername;
-
-         header("location: movie.php");
+         //session_register("username");
+         $_SESSION['login_user'] = $username;
+         header("location: http://movie.technologyofkevin.com/movie.php");
       }else {
-         $error = "Your Login Name or Password is invalid";
+         $error = 1;
+         header("location: http://movie.technologyofkevin.com/index.php?er=1");
       }
    }
 ?>
