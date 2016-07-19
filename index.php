@@ -29,8 +29,8 @@
 
       <div id="loginbox" class="loginbox" style = "margin:30px">
         <form action = "login.php" method = "post" id="login_form">
-          <p><label for="username">UserName</label></p><input type="text" name="username" class="logininput" />
-          <p><label for="password">Password</label></p><input type="password" name="password" class="logininput" />
+          <p><label for="username">UserName</label></p><input type="text" name="username" class="logininput" required />
+          <p><label for="password">Password</label></p><input type="password" name="password" class="logininput" required />
         </form>
 
         <div class="intosubmit">
