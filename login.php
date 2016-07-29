@@ -14,7 +14,7 @@
       if ( $count ==1 ){
         $userrow = mysqli_fetch_assoc($result);
         if ( password_verify( $password ,$userrow['user_pass']) ){
-	  $_SESSION['login_user'] = $username;
+	        $_SESSION['login_user'] = $username;
           header("location: http://movie.technologyofkevin.com/movie.php");
         }else {
           header("location: http://movie.technologyofkevin.com/index.php?er=1");
@@ -23,16 +23,5 @@
          $error = 1;
          header("location: http://movie.technologyofkevin.com/index.php?er=1");
       }
-      //$count = mysqli_num_rows( $result );
-
-      // If result matched $username and $password, table row must be 1 row
-      /*if($count == 1) {
-         //session_register("username");
-         $_SESSION['login_user'] = $username;
-         header("location: http://movie.technologyofkevin.com/movie.php");
-      }else {
-         $error = 1;
-         header("location: http://movie.technologyofkevin.com/index.php?er=1");
-      }*/
    }
 ?>
