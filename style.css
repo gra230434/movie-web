@@ -168,7 +168,7 @@ optgroup {
  */
 .intoweb {
 	width: 400px;
-	height: 350px;
+	height: 330px;
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -182,7 +182,7 @@ optgroup {
 }
 
 .intobox p {
-	margin: 10px 0 5px;
+	margin: 15px 0 0;
 }
 
 .intoboxtitle {
@@ -193,7 +193,8 @@ optgroup {
 	text-align: center;
 }
 
-.loginbox input[type="text"], .loginbox input[type="password"] {
+.loginbox input[type="text"], .loginbox input[type="password"],
+.registrationbox input {
 	padding: 8px;
 	display: block;
 	border: none;
@@ -202,7 +203,13 @@ optgroup {
 	background-color: rgba(255,255,255,0);
 }
 
-.intosubmit {
+.loginbox input:focus, .registrationbox input:focus {
+	padding-bottom: 7px;
+	outline-style: none;
+	border-bottom: 2px solid #457EE8;
+}
+
+.addusersubmit, .intowebsubmit {
 	margin: 20px 0;
 	height: 34px;
 	width: 100%;

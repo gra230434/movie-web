@@ -1,5 +1,5 @@
 <?php
-   include("../DBfolder/config.php");
+   include("DBfolder/connect.php");
    session_start();
 
    if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -7,18 +7,32 @@
       $username = mysqli_real_escape_string($db,$_POST['username']);
       $password = mysqli_real_escape_string($db,$_POST['password']);
 
-      $sql = "SELECT * FROM movie_users WHERE user_login = '$username' and user_pass = '$password'";
+      $sql = "SELECT * FROM movie_users WHERE user_login = '$username'";
       $result = mysqli_query($db,$sql);
       $count = mysqli_num_rows( $result );
 
+      if ( $count ==1 ){
+        $userrow = mysqli_fetch_assoc($result);
+        if ( password_verify( $password ,$userrow['user_pass']) ){
+	  $_SESSION['login_user'] = $username;
+          header("location: http://movie.technologyofkevin.com/movie.php");
+        }else {
+          header("location: http://movie.technologyofkevin.com/index.php?er=1");
+        }
+      }else {
+         $error = 1;
+         header("location: http://movie.technologyofkevin.com/index.php?er=1");
+      }
+      //$count = mysqli_num_rows( $result );
+
       // If result matched $username and $password, table row must be 1 row
-      if($count == 1) {
+      /*if($count == 1) {
          //session_register("username");
          $_SESSION['login_user'] = $username;
          header("location: http://movie.technologyofkevin.com/movie.php");
       }else {
          $error = 1;
          header("location: http://movie.technologyofkevin.com/index.php?er=1");
-      }
+      }*/
    }
 ?>

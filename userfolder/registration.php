@@ -26,10 +26,11 @@
             $message = "Something wrong. Q_Q";
           }
         } else if ( $countmail != 0 ){
-          header("location: http://movie.technologyofkevin.com/index.php?er=4");
+          $message = "Someone has used your email. Please try another.";
         } else if ( $countname != 0 ){
-          header("location: http://movie.technologyofkevin.com/index.php?er=5");
+          $message = "Someone has used your name. Please try another.";
         }
       }
 
+      return $message;
 ?>
