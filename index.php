@@ -26,10 +26,9 @@
         // process the form
         $('#registration_form').submit(function(event) {
 
-	  var username = $('input[name=reusername]').val();
-	  var usermail = $('input[name=reusermail]').val();
-
-	  console.log(username+" , "+usermail);
+          var username = $('input[name=reusername]').val();
+          var usermail = $('input[name=reusermail]').val();
+          console.log(username+" , "+usermail);
 
           // get the form data
           // there are many ways to get this data using jQuery (you can use the class or id also)
@@ -50,102 +49,94 @@
           })
           // using the done promise callback
           .done(function(data) {
-
-              // here we will handle errors and validation messages
-              if ( ! data.success) {
-		$('#dialog-error').dialog( "open" );
-		$('#dialog-error').html("<p>I'm sorry, but ...</p>");
-                // handle errors for name ---------------
-                if (data.errors.name) {
-                  $('#reusername').addClass('has-error'); // add the error class to show red input
-                  $('#dialog-error').append("<p>" + data.errors.name + "</p>");
-		}
-                // handle errors for email ---------------
-                if (data.errors.password) {
-                  $('#repassword').addClass('has-error'); // add the error class to show red input
-                  $('#dialog-error').append("<p>" + data.errors.password + "</p>");
-		}
-                // handle errors for superhero alias ---------------
-                if (data.errors.mail) {
-                  $('#reusermail').addClass('has-error'); // add the error class to show red input
-                  $('#dialog-error').append("<p>" + data.errors.mail + "</p>");
-		}
-                // email is not alone
-                if (data.errors.emaildo) {
-                  $('#reusermail').addClass('has-error'); // add the error class to show red input
-		  $('#dialog-error').append("<p>" + data.errors.emaildo + "</p>");
-                }
-                // username is not alone
-                if (data.errors.namedo) {
-                  $('#reusername').addClass('has-error'); // add the error class to show red input
-                  $('#dialog-error').append("<p>" + data.errors.namedo + "</p>");
-                }
-                // mysql faile
-                if (data.error) {
-		  $('#dialog-error').append('<p>' + data.error + '</p>');
-                }
-
-              } else {
-
-		// success get request
-                $('#dialog-error').dialog( "open" );
-                $('#dialog-error').html('<p>Wellcom to Movie System</p>');
-		senttouser( username, usermail );
-		
+            // here we will handle errors and validation messages
+            if ( ! data.success) {
+              $('#dialog-error').dialog( "open" );
+              $('#dialog-error').html("<p>I'm sorry, but ...</p>");
+              // handle errors for name ---------------
+              if (data.errors.name) {
+                $('#reusername').addClass('has-error'); // add the error class to show red input
+                $('#dialog-error').append("<p>" + data.errors.name + "</p>");
               }
-          });
+              // handle errors for email ---------------
+              if (data.errors.password) {
+                $('#repassword').addClass('has-error'); // add the error class to show red input
+                $('#dialog-error').append("<p>" + data.errors.password + "</p>");
+              }
+              // handle errors for superhero alias ---------------
+              if (data.errors.mail) {
+                $('#reusermail').addClass('has-error'); // add the error class to show red input
+                $('#dialog-error').append("<p>" + data.errors.mail + "</p>");
+              }                // email is not alone
+              if (data.errors.emaildo) {
+                $('#reusermail').addClass('has-error'); // add the error class to show red input
+                $('#dialog-error').append("<p>" + data.errors.emaildo + "</p>");
+              }
+              // username is not alone
+              if (data.errors.namedo) {
+                $('#reusername').addClass('has-error'); // add the error class to show red input
+                $('#dialog-error').append("<p>" + data.errors.namedo + "</p>");
+              }
+              // mysql faile
+              if (data.error) {
+                $('#dialog-error').append('<p>' + data.error + '</p>');
+              }
 
+            } else {
+              // success get request
+              $('#dialog-error').dialog( "open" );
+              $('#dialog-error').html('<p>Wellcom to Movie System</p>');
+              senttouser( username, usermail );
+            }
+          });
 
           // stop the form from submitting the normal way and refreshing the page
           event.preventDefault();
         });
 
-	$('#dialog-error').dialog({
-		title: "Message",
-		width: 350,
-                autoOpen: false,
-                show: {
-                        effect: "blind",
-                        duration: 700
-                },
-                hide: {
-                        effect: "blind",
-                        duration: 700
-                }
-	});
-
-	function senttouser( username , useremail ){
-
-		var mailData = {
-			'username' : username,
-			'usermail' : useremail
-		};
-
-		$.ajax({
-        		type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+        function senttouser( username , useremail ){
+          var mailData = {
+            'username' : username,
+            'usermail' : useremail
+          };
+          $.ajax({
+            type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
         		url         : 'sendmail.php', // the url where we want to POST
         		data        : mailData, // our data object
         		dataType    : 'json', // what type of data do we expect back from the server
         		encode      : true
         	})
-		.done(function(mail){
-			if ( ! mail.success ) {
-				$('#dialog-error').dialog( "open" );
-                		$('#dialog-error').html("<p>" + mail.message + "</p>");
-			} else {
-				$('#dialog-error').dialog( "open" );
-                                $('#dialog-error').html("<p>" + mail.message + "</p>");
-			}
-		});
-		event.preventDefault();
-	};
+          .done(function(mail){
+            if ( ! mail.success ) {
+              $('#dialog-error').dialog( "open" );
+              $('#dialog-error').html("<p>" + mail.message + "</p>");
+            } else {
+              $('#dialog-error').dialog( "open" );
+              $('#dialog-error').html("<p>" + mail.message + "</p>");
+            }
+          });
+          event.preventDefault();
+        };
 
+        $('#dialog-error').dialog({
+          title: "Message",
+          width: 350,
+          autoOpen: false,
+          show: {
+            effect: "blind",
+            duration: 700
+          },
+          hide: {
+            effect: "blind",
+            duration: 700
+          }
+        });//dialog end
       });
     </script>
 </head>
 
 <body id="loginpagebody">
-  
+
   <div id="dialog-error" title="Basic dialog" style="display: none;backgroung-color:white;">
     <p>this is test dialog in firefox</p>
   </div>
@@ -196,16 +187,16 @@
   <script>
     var heighch, intoch;
     $('#registrationon').click( function() {
-	$('#intoboxtitle').html("<b>Registration</b>");
-        $('#loginbox').toggle('200', 'linear');
-	intoch = setTimeout(function(){heighhiegh('#intoweb','500')},250);
-        heighch = setTimeout(function(){nextintoweb('#registrationbox')},500);
+      $('#intoboxtitle').html("<b>Registration</b>");
+      $('#loginbox').toggle('200', 'linear');
+      intoch = setTimeout(function(){heighhiegh('#intoweb','500')},250);
+      heighch = setTimeout(function(){nextintoweb('#registrationbox')},500);
     })
     $('#loginon').click( function() {
-	$('#intoboxtitle').html("<b>Login</b>");
-        $('#registrationbox').toggle('200', 'linear');
-	intoch = setTimeout(function(){heighhiegh('#intoweb','350')},250);
-	heighch = setTimeout(function(){nextintoweb('#loginbox')},500);
+      $('#intoboxtitle').html("<b>Login</b>");
+      $('#registrationbox').toggle('200', 'linear');
+      intoch = setTimeout(function(){heighhiegh('#intoweb','350')},250);
+      heighch = setTimeout(function(){nextintoweb('#loginbox')},500);
     })
     function nextintoweb( dividiput ){
 	     $(dividiput).toggle('200', 'linear');

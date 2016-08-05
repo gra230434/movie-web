@@ -1,4 +1,4 @@
-<?php 
+<?php
 
    include("DBfolder/connect.php");
    session_start();
@@ -9,20 +9,21 @@
 	if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 		if (empty($_POST['username'])){
-        		$errors['name'] = 'Name is required.';
-      		}else {
-        		$username = mysqli_real_escape_string($db,$_POST['username']);
-      		}
+      $errors['name'] = 'Name is required.';
+    }else {
+      $username = mysqli_real_escape_string($db,$_POST['username']);
+    }
 
 		if (empty($_POST['usermail'])){
-                        $errors['mail'] = 'Mail is required.';
-                }else {
-                        $usermail = mysqli_real_escape_string($db,$_POST['usermail']);
-                }
+      $errors['mail'] = 'Mail is required.';
+    }else {
+      $usermail = mysqli_real_escape_string($db,$_POST['usermail']);
+    }
 
-		$sql = "SELECT user_status FROM movie_users WHERE user_login='$username' AND user_email='$usermail'";
+		$sql = "SELECT user_status, user_display FROM movie_users WHERE user_login='$username' AND user_email='$usermail'";
 		$connect = mysqli_query( $db,$sql );
 		$count = mysqli_num_rows( $connect );
+
 		if ( $count == 1 && empty( $errors ) ) {
 			$row      = mysqli_fetch_array($connect);
 			$to       = $usermail;
@@ -36,7 +37,7 @@
 			$txt .= "<p>Nice to meet you, " . strip_tags($username) . "</p>";
 			$txt .= "<p>We need to know the " . strip_tags($usermail) ." is yours.</p>";
 			$txt .= "<p>If not, don't care the email or you can resent to us for the trouble!</p>";
-			$txt .= "<p>Please click the url to finish the sing in</p><a href='http://movie.technologyofkevin.com/check.php'>click me</a>";
+			$txt .= "<p>Please click the url to finish the sing in</p><a href='http://movie.technologyofkevin.com/check.php?N=" . $row['user_display'] . "'>click me</a>";
 			$txt .= "<p>And keyin your code</p>";
 			$txt .= strip_tags($row['user_status']);
 			$txt .= "<p>Thank you!</p>";

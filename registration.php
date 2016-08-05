@@ -17,7 +17,7 @@
       if (empty($_POST['repassword'])){
         $errors['password'] = 'Password is required.';
       }else {
-        $$password = mysqli_real_escape_string($db,$_POST['repassword']);
+        $password = mysqli_real_escape_string($db,$_POST['repassword']);
       }
 
       if (empty($_POST['reusername'])){
@@ -41,13 +41,15 @@
       $count_name = mysqli_num_rows( $check_name );
       if ($count_name != 0) { $errors['namedo'] = 'Someone has used your name. Please try another.'; }
 
+      $namemd5 = md5($username);
+
       if ( ! empty($errors) ){
         $data['success'] = false;
         $data['errors']  = $errors;
       }else {
         # code...
-        $adduser = "INSERT INTO movie_users(user_login, user_pass, user_email, user_registered, user_status)
-                    VALUES ('$username', '$hashpassword', '$usermail', '$whattime', '$randnumb')";
+        $adduser = "INSERT INTO movie_users(user_login, user_pass, user_email, user_registered, user_status, user_display)
+                    VALUES ('$username', '$hashpassword', '$usermail', '$whattime', '$randnumb', '$namemd5')";
         $result = mysqli_query($db,$adduser);
         if ( $result ) {
           $data['success'] = true;
