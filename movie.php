@@ -1,6 +1,5 @@
 <?php
-  include ("name.php");
-  include ("DBfolder/session.php");
+  include ("mo-dbcon/session.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -47,7 +46,7 @@
     <header>
       <h1>這是私人動漫天地</h1>
       <p>請不要任意洩露密碼，裡面資料會讓我們都死翹翹，謝謝</p>
-      <p>Welcome <?php echo $login_session; ?> <a href="logout.php">登出</a></p>
+      <p>Welcome <?php echo $user_name; ?> <a href="logout.php">登出</a></p>
     </header>
     <div class="sidebar">
       <h2>Animation List</h2>

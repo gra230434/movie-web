@@ -1,6 +1,6 @@
 <?php
-   include("DBfolder/connect.php");
-   include("DBfolder/error.php");
+   include("mo-dbcon/connect.php");
+   include("mo-dbcon/error.php");
 
    session_start();
 
@@ -21,7 +21,6 @@
     <title>絕對低調</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script>
-      // magic.js
       $(document).ready(function() {
         // process the form
         $('#registration_form').submit(function(event) {

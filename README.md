@@ -6,7 +6,7 @@
 謝謝大家
 
 / 網頁root資料夾
->>/DBfolder
+>>/mo-dbcon
 >>>>connct.php 連接後端mysql資料庫
 >>>>session.php 啟動php session服務
 >>index.php 系統登入頁面，從此頁進入系統

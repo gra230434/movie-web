@@ -1,6 +1,5 @@
 <?php
-
-   include("DBfolder/connect.php");
+   include("mo-dbcon/connect.php");
    session_start();
 
    $errors         = array();      // array to hold validation errors
@@ -25,7 +24,7 @@
 		$count = mysqli_num_rows( $connect );
 
 		if ( $count == 1 && empty( $errors ) ) {
-			$row      = mysqli_fetch_array($connect);
+			$rows     = mysqli_fetch_array($connect);
 			$to       = $usermail;
 			$subject  = "Movie system check email";
 			$headers  = "From: gra09735213@gmail.com \r\n";
@@ -39,7 +38,7 @@
 			$txt .= "<p>If not, don't care the email or you can resent to us for the trouble!</p>";
 			$txt .= "<p>Please click the url to finish the sing in</p><a href='http://movie.technologyofkevin.com/check.php?N=" . $row['user_display'] . "'>click me</a>";
 			$txt .= "<p>And keyin your code</p>";
-			$txt .= strip_tags($row['user_status']);
+			$txt .= strip_tags($rows['user_status']);
 			$txt .= "<p>Thank you!</p>";
 			$txt .= "</body></html>";
 

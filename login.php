@@ -1,5 +1,5 @@
 <?php
-   include("DBfolder/connect.php");
+   include("mo-dbcon/connect.php");
    session_start();
 
    if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -11,14 +11,14 @@
       $result = mysqli_query($db,$sql);
       $count = mysqli_num_rows( $result );
 
-      if ( $count ==1 ){
-        $userrow = mysqli_fetch_assoc($result);
-        if ( password_verify( $password ,$userrow['user_pass']) ){
-	        $_SESSION['login_user'] = $username;
-          header("location: http://movie.technologyofkevin.com/movie.php");
-        }else {
-          header("location: http://movie.technologyofkevin.com/index.php?er=1");
-        }
+      if($count == 1) {
+         $rows = mysqli_fetch_array($result);
+         if ( !empty($rows['user_display']) ) {
+           $_SESSION['login_user'] = $rows['user_display'];
+         } else {
+           $_SESSION['login_user'] = $rows['login_user'];
+         }
+         header("location: http://movie.technologyofkevin.com/movie.php");
       }else {
          $error = 1;
          header("location: http://movie.technologyofkevin.com/index.php?er=1");

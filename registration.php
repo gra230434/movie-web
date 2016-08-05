@@ -1,6 +1,6 @@
 <?php
    // client close
-   include("DBfolder/connect.php");
+   include("mo-dbcon/connect.php");
    session_start();
 
    $errors         = array();      // array to hold validation errors
