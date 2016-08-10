@@ -3,10 +3,10 @@
    include("mo-dbcon/error.php");
 
    session_start();
-
-   if($_SERVER["REQUEST_METHOD"] == "GET") {
+   $error="";
+   if(isset($_GET['er'])) {
       // username and password sent from form
-      $usererror = $_GET["er"];
+      $usererror = $_GET['er'];
       $error = $errormessage[$usererror];
    }
 ?>

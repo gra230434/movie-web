@@ -30,6 +30,3 @@ define('DB_COLLATE', 'utf8_unicode_ci');
 if ( !defined('ABSPATH') ){
   define('ABSPATH', dirname(__FILE__) . '/');
 }
-
-/** 導入後端資料庫連結 */
-require_once(ABSPATH . 'mo-dbcon/connect.php');
