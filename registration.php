@@ -31,6 +31,7 @@
 
       $hashpassword = password_hash($password, PASSWORD_DEFAULT);
 
+      // check name and email is double in database or not
       $sql = "SELECT user_email FROM movie_users WHERE user_email='$usermail'";
       $check_email = mysqli_query( $db,$sql );
       $count_mail = mysqli_num_rows( $check_email );
@@ -47,7 +48,7 @@
         $data['success'] = false;
         $data['errors']  = $errors;
       }else {
-        # code...
+        # INSERT user
         $adduser = "INSERT INTO movie_users(user_login, user_pass, user_email, user_registered, user_status, user_display)
                     VALUES ('$username', '$hashpassword', '$usermail', '$whattime', '$randnumb', '$namemd5')";
         $result = mysqli_query($db,$adduser);

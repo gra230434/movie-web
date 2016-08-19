@@ -1,6 +1,6 @@
 <?php
 /** 導入後端資料庫連結 */
-require_once(ABSPATH . 'mo-config.php');
+require_once('mo-config.php');
 
 $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 

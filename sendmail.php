@@ -36,7 +36,7 @@
 			$txt .= "<p>Nice to meet you, " . strip_tags($username) . "</p>";
 			$txt .= "<p>We need to know the " . strip_tags($usermail) ." is yours.</p>";
 			$txt .= "<p>If not, don't care the email or you can resent to us for the trouble!</p>";
-			$txt .= "<p>Please click the url to finish the sing in</p><a href='http://movie.technologyofkevin.com/check.php?N=" . $row['user_display'] . "'>click me</a>";
+			$txt .= "<p>Please click the url to finish the sing in</p><a href='http://movie.technologyofkevin.com/check.php?N=" . strip_tags($row['user_display']) . "'>click me</a>";
 			$txt .= "<p>And keyin your code</p>";
 			$txt .= strip_tags($rows['user_status']);
 			$txt .= "<p>Thank you!</p>";

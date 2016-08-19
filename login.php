@@ -1,28 +1,11 @@
 <?php
-/**
- * movie System login.php 設定檔
- *
- * @version 1.0.0
- * @author Kevin gra230434@gmail.com
- * @since 0.1.0 10/08/16
- */
-
    include("mo-dbcon/connect.php");
    session_start();
 
    if($_SERVER["REQUEST_METHOD"] == "POST") {
-      // username sent from form
-      if (empty($_POST['username'])){
-        header("location: http://movie.technologyofkevin.com/index.php?er=3");
-      }else {
-        $username = mysqli_real_escape_string($db,$_POST['username']);
-      }
-      // password sent from form
-      if (empty($_POST['password'])){
-        header("location: http://movie.technologyofkevin.com/index.php?er=4");
-      }else {
-        $username = mysqli_real_escape_string($db,$_POST['username']);
-      }
+      // username and password sent from form
+      $username = mysqli_real_escape_string($db,$_POST['username']);
+      $password = mysqli_real_escape_string($db,$_POST['password']);
 
       $sql = "SELECT * FROM movie_users WHERE user_login='$username'";
       $result = mysqli_query($db,$sql);
@@ -38,10 +21,11 @@
            }
            header("location: http://movie.technologyofkevin.com/movie.php");
          } else {
-           header("location: http://movie.technologyofkevin.com/index.php?er=2");
+           header("location: http://movie.technologyofkevin.com/index.php?er=1");
          }
-      }else {
-         header("location: http://movie.technologyofkevin.com/index.php?er=1");
+       }else {
+         $error = 1;
+         header("location: http://movie.technologyofkevin.com/index.php?er=2");
       }
    }
 ?>

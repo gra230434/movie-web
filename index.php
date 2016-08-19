@@ -3,7 +3,8 @@
    include("mo-dbcon/error.php");
 
    session_start();
-   $error="";
+
+   $error = "";
    if(isset($_GET['er'])) {
       // username and password sent from form
       $usererror = $_GET['er'];
@@ -161,16 +162,16 @@
       <div id="registrationbox" class="registrationbox" style="display:none;margin:30px">
         <form action = "registration.php" method = "post" id="registration_form">
           <div id="input_reusername">
-            <p><label for="reusername">UserName</label></p><input id="reusername" type="text" name="reusername" required />
+            <p><label for="reusername">UserName</label></p><input id="reusername" type="text" name="reusername" required >
           </div>
           <div id="input_repassword">
             <p><label for="repassword">Password</label></p><input id="repassword" type="password" name="repassword" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"/>
           </div>
           <div id="input_ckpassword">
-            <p><label for="ckpassword">Check Password</label></p><input id="ckpassword" type="password" name="ckpassword" required />
+            <p><label for="ckpassword">Check Password</label></p><input id="ckpassword" type="password" name="ckpassword" required >
           </div>
           <div id="input_reusermail">
-            <p><label for="reusermail">User Email</label></p><input id="reusermail" type="text" name="reusermail" required />
+            <p><label for="reusermail">User Email</label></p><input id="reusermail" type="text" name="reusermail" required >
           </div>
         </form>
 

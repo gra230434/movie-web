@@ -1,16 +1,11 @@
 <?php
-/**
- * movie System login error 設定檔
- *
- * @version 1.0.0
- * @author Kevin gra230434@gmail.com
- * @since 0.1.0 10/08/16
- */
-
 $errormessage = array(
-  1 => "Your Login Name is invalid",
-  2 => "Your Password is invalid",
-  3 => "UserName is empty",
-  4 => "Password is empty",
+  1 => "Your Login Name or Password is invalid",
+  2 => "UserName is empty",
+  3 => "Password is empty",
+  4 => "Someone has used your email. Please try another.",
+  5 => "Someone has used your name. Please try another.",
+  6 => "Something wrong. Q_Q",
+  7 => "Welcome to movie system!"
 )
 ?>
