@@ -10,32 +10,33 @@
     if ( isset($_GET['N']) ) {
       $namemd5 = mysqli_real_escape_string($db,$_GET['N']);
 
-      $sql = "SELECT * FROM movie_users WHERE user_display = '$namemd5'";
+      $sql = "SELECT ID, user_login, user_status, user_display FROM movie_users WHERE user_display = '$namemd5'";
       $connect = mysqli_query( $db,$sql );
   		$count = mysqli_num_rows( $connect );
 
-      if ($count==1) {
+      if ( $count==1 ) {
         $rows = mysqli_fetch_array($connect);
         $username = $rows['user_login'];
+        $userID   = $rows['ID'];
 
         // post start when user input CODE
-        if($_SERVER["REQUEST_METHOD"] == "POST") {
+        if( $_SERVER["REQUEST_METHOD"] == "POST" ) {
 
-          if (!empty($_POST['check_code'])){
+          if ( empty($_POST['check_code'] )){
             $errors['code'] = 'CODE is required.';
           }else {
             $check_code = mysqli_real_escape_string($db,$_POST['check_code']);
           }
 
-          if (!empty($_POST['realname'])){
+          if ( empty($_POST['realname']) ){
             $realname = "";
           }else {
             $realname = mysqli_real_escape_string($db,$_POST['realname']);
           }
 
-          if ($rows['user_status']==$check_code) {
-            $sql = "UPDATE movie_users SET user_status='5' user_display='$realname' WHERE user_display = '$namemd5'";
-            if (mysqli_query($db, $sql)) {
+          if ( $rows['user_status']==$check_code ) {
+            $sql = "UPDATE movie_users SET user_status=5, user_display='$realname' WHERE user_login = '$username' AND ID = $userID";
+            if ( mysqli_query($db, $sql) ) {
               header("location: http://movie.technologyofkevin.com/movie.php");
             } else {
               echo "Error updating record: " . mysqli_error($conn);
@@ -47,7 +48,7 @@
         $errors['notmatch'] = 'Your URL is worng';
       }
     } else {
-      $errors['notmatch'] = 'Your URL is worng';
+      $errors['notmatch'] = 'NO URL';
     }
 ?>
 
@@ -56,7 +57,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <?php
-    if (!empty($errors)) {
+    if (isset($errors['notmatch'])) {
       echo "<meta http-equiv='refresh' content='10;url=http://movie.technologyofkevin.com/'>";
     }
     ?>
