@@ -162,6 +162,10 @@ optgroup {
 	position: relative;
 }
 
+#moviebody {
+	background-color: #989898;
+}
+
 /**
  * 3.0 - loginpage
  *
@@ -241,6 +245,20 @@ optgroup {
  * 4.0 - Sidebar
  *
  */
+.movieheader {
+	height: 50px;
+}
+
+.movieheader h1 {
+	float: left;
+	font-size: 38px;
+}
+
+.movieheader p {
+	float: right;
+	font-size: 38px;
+}
+
 .sidebar {
 	width: 25%;
  	float: left;

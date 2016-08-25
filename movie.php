@@ -41,12 +41,15 @@
     </script>
 </head>
 
-<body>
+<body id="moviebody">
   <div class="sitepage">
-    <header>
-      <h1>這是私人動漫天地</h1>
-      <p>請不要任意洩露密碼，裡面資料會讓我們都死翹翹，謝謝</p>
-      <p>Welcome <?php echo $user_name; ?> <a href="logout.php">登出</a></p>
+    <header class="movieheader">
+      <h1>私人動漫天地</h1>
+      <p>Welcome <?php echo $user_name; ?> </p>
+      <ul class="drop-down-menu">
+        <li><a href="logout.php">登出</a></li>
+        <li><a href="logout.php">登出</a></li>
+      </ul>
     </header>
     <div class="sidebar">
       <h2>Animation List</h2>

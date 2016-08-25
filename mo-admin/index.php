@@ -1,5 +1,5 @@
 <?php
-  include (dirname(__FILE__) . '/../mo-dbcon/session.php' );
+  include( dirname(__FILE__) . '/../mo-dbcon/session.php' );
   require( dirname(__FILE__) . '/admin-function.php' );
 
   if ( !check_userstatus( $_SESSION['login_user'] ) ) {
@@ -18,5 +18,8 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+  <?php
+    admin_showuser();
+  ?>
 </body>
 </html>
