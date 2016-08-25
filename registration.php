@@ -9,7 +9,7 @@
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form
       if (empty($_POST['reusername'])){
-        $errors['name'] = 'Name is required.';
+        $errors['nameemp'] = 'Name is required.';
       }else {
         $username = mysqli_real_escape_string($db,$_POST['reusername']);
       }

@@ -54,7 +54,7 @@
               $('#dialog-error').dialog( "open" );
               $('#dialog-error').html("<p>I'm sorry, but ...</p>");
               // handle errors for name ---------------
-              if (data.errors.name) {
+              if (data.errors.nameemp) {
                 $('#reusername').addClass('has-error'); // add the error class to show red input
                 $('#dialog-error').append("<p>" + data.errors.name + "</p>");
               }
