@@ -1,6 +1,5 @@
 <?php
-
-  require( dirname(__FILE__) . '/../mo-dbcon/mo-config.php' );
+  require_once( dirname(__FILE__) . '/../mo-dbcon/connect.php' );
 
   /**
    * check_userstatus : check user status only let status==1
@@ -29,20 +28,24 @@
    * @since movie system 1.2
    */
    function admin_showuser(){
+     Global $db;
      $sql = "SELECT ID, user_login, user_lasttime, user_status, user_display FROM movie_users";
      if ( $result = mysqli_query($db,$sql) ){
-       printf ("<tbody><thead><tr>
-                  <td>ID</td>
-                  <td>Full name</td>
-                  <td>User name</td>
-                  <td>User status</td>
-                  <td>Last login</td>
+       printf ("<table><thead><tr>
+                  <th>ID</th>
+                  <th>Full name</th>
+                  <th>User name</th>
+                  <th>User status</th>
+                  <th>Last login</th>
                   </tr></thead>");
-       while ( $row=mysqli_fetch_row($result) ){
-         $lastdate = empty($row['user_lasttime'])?$row['user_lasttime']:'No login';
+       printf ("<tbody>");
+       while ( $row = mysqli_fetch_row($result) ){
+         echo $row;
+         $lastdate = empty($row[2])?$row[2]:'No login';
          printf ("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>",
-          $row['ID'],$row['user_display'],$row['user_login'],$row['user_status'],$lastdate);
+         $row[0],$row[5],$row[1],$row[3],$lastdate);
        }
        printf ("</tbody>");
+       printf ("</table>");
      }
    }

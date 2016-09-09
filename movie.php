@@ -48,8 +48,8 @@
       <p>Welcome <?php echo $user_name; ?> </p>
       <ul class="drop-down-menu">
         <li><a href="logout.php">登出</a></li>
-        <li><a href="logout.php">使用者</a></li>
-        <li><a href="logout.php">管理者</a></li>
+        <li><a href="http://movie.technologyofkevin.com/mo-user/">使用者</a></li>
+        <li><a href="http://movie.technologyofkevin.com/mo-admin/">管理者</a></li>
       </ul>
     </header>
     <div class="sidebar">

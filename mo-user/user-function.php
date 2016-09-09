@@ -32,10 +32,8 @@
      $sql = "SELECT ID, user_login, user_lasttime, user_display FROM movie_users WHERE user_login=$username";
      if ( $result = mysqli_query($db,$sql) ){
        printf ("<tbody>");
-       while ( $row=mysqli_fetch_row($result) ){
-         $lastdate = empty($row['user_lasttime'])?$row['user_lasttime']:'No login';
-         printf ("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>",
-          $row['ID'],$row['user_display'],$row['user_login'],$row['user_status'],$lastdate);
+       if ( $row=mysqli_fetch_row($result )) {
+         # code...
        }
        printf ("</tbody>");
      }

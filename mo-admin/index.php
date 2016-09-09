@@ -2,7 +2,7 @@
   include( dirname(__FILE__) . '/../mo-dbcon/session.php' );
   require( dirname(__FILE__) . '/admin-function.php' );
 
-  if ( !check_userstatus( $_SESSION['login_user'] ) ) {
+  if ( $_SESSION['login_stat'] == 1 ) {
     header ("location: http://movie.technologyofkevin.com/movie.php");
   }
 ?>
@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+  <h1>WHY</h1>
   <?php
     admin_showuser();
   ?>
