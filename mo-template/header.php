@@ -1,12 +1,3 @@
-<?php
-  require( dirname(__FILE__) . '/../mo-dbcon/session.php' );
-  require( dirname(__FILE__) . '/user-function.php' );
-
-  if ( !check_status( $_SESSION['login_user'] ) ) {
-    header ("location: http://movie.technologyofkevin.com/movie.php");
-  }
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,8 +9,12 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <?php
-    admin_showuser();
-  ?>
-</body>
-</html>
+  <header>
+    <h1>私人動漫天地</h1>
+    <p>Welcome <?php echo username($_SESSION['login_user'],$_SESSION['login_disp']); ?> </p>
+    <ul class="drop-down-menu">
+      <li><a href="http://movie.technologyofkevin.com/logout.php">登出</a></li>
+      <li><a href="http://movie.technologyofkevin.com/mo-user/">使用者</a></li>
+      <li><a href="http://movie.technologyofkevin.com/mo-admin/">管理者</a></li>
+    </ul>
+  </header>

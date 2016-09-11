@@ -9,6 +9,7 @@
    * @since movie system 1.2
    */
    function check_userstatus( $username ){
+     Global $db;
      $sql = "SELECT user_status FROM movie_users WHERE user_login='$username'";
      if ( $result = mysqli_query($db,$sql) ){
        $row = mysqli_fetch_row($result);

@@ -1,26 +1,26 @@
 <?php
-  include( dirname(__FILE__) . '/../mo-dbcon/session.php' );
+  require( dirname(__FILE__) . '/../mo-dbcon/session.php' );
   require( dirname(__FILE__) . '/admin-function.php' );
 
-  if ( $_SESSION['login_stat'] == 1 ) {
+  if ( $_SESSION['login_stat'] != 1 ) {
     header ("location: http://movie.technologyofkevin.com/movie.php");
   }
+  require( dirname(__FILE__) . '/../mo-template/template-function.php' );
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <title>絕對低調</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-  <h1>WHY</h1>
-  <?php
-    admin_showuser();
-  ?>
-</body>
-</html>
+<?php
+  include( dirname(__FILE__) . '/../mo-template/header.php' );
+?>
+  <div class="sidebar">
+    <h2>Animation List</h2>
+    <div id="myDiv"></div>
+  </div><!-- .sidebar -->
+  <div id="videopart" class="videopart masterbar">
+    <h1>使用者名單</h1>
+    <?php
+      admin_showuser();
+    ?>
+  </div>
+<?php
+  include( dirname(__FILE__) . '/../mo-template/fooder.php' );
+ ?>

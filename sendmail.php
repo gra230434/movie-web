@@ -1,6 +1,16 @@
 <?php
-   include("mo-dbcon/connect.php");
+   require_once("mo-dbcon/connect.php");
    session_start();
+
+   /**
+    * send email : send email to check user Email address by php mail
+    *
+    * @version 1.0.0
+    * @author Kevin gra230434@gmail.com
+    * @since movie system 1.2
+    *
+    * @param user_login, user_email
+    */
 
    $errors         = array();      // array to hold validation errors
    $mail           = array();      // array to pass back data

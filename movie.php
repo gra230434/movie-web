@@ -1,5 +1,6 @@
 <?php
-  include ("mo-dbcon/session.php");
+  require( dirname(__FILE__) . '/mo-dbcon/session.php');
+  require( dirname(__FILE__) . '/mo-template/template-function.php' );
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,7 +46,7 @@
   <div class="sitepage">
     <header class="movieheader">
       <h1>私人動漫天地</h1>
-      <p>Welcome <?php echo $user_name; ?> </p>
+      <p>Welcome <?php echo username($_SESSION['login_user'],$_SESSION['login_disp']); ?> </p>
       <ul class="drop-down-menu">
         <li><a href="logout.php">登出</a></li>
         <li><a href="http://movie.technologyofkevin.com/mo-user/">使用者</a></li>
