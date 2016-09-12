@@ -46,7 +46,8 @@
   <div class="sitepage">
     <header class="movieheader">
       <h1>私人動漫天地</h1>
-      <p>Welcome <?php echo username($_SESSION['login_user'],$_SESSION['login_disp']); ?> </p>
+      <p>Welcome <?php echo username($_SESSION['login_user'],$_SESSION['login_disp']); ?></p>
+      <p>你上次登入系統是在 <?php echo $_SESSION['login_time'] ?></p>
       <ul class="drop-down-menu">
         <li><a href="logout.php">登出</a></li>
         <li><a href="http://movie.technologyofkevin.com/mo-user/">使用者</a></li>

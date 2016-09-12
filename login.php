@@ -7,7 +7,7 @@
     $username = mysqli_real_escape_string($db,$_POST['username']);
     $password = mysqli_real_escape_string($db,$_POST['password']);
 
-    $sql = "SELECT user_login, user_display, user_status, user_pass FROM movie_users WHERE user_login='$username'";
+    $sql = "SELECT user_login, user_display, user_status, user_pass, user_lasttime FROM movie_users WHERE user_login='$username'";
     $result = mysqli_query($db,$sql);
     $count = mysqli_num_rows( $result );
 
@@ -18,23 +18,31 @@
        if( password_verify( $password ,$rows['user_pass']) ) {
 
          if ( $rows['user_status'] < 6 ) {
-           $sql = "UPDATE";
-           $_SESSION['login_user'] = $rows['user_login'];
-           $_SESSION['login_disp'] = $rows['user_display'];
-           $_SESSION['login_stat'] = $rows['user_status'];
-           header("location: http://movie.technologyofkevin.com/movie.php");
+           $whattime = date("Y-m-d");;
+           $sql = "UPDATE movie_users SET user_lasttime='$whattime' WHERE user_login = '$username'";
+
+           if( mysqli_query($db,$sql) ) {
+             $_SESSION['login_user'] = $rows['user_login'];
+             $_SESSION['login_disp'] = $rows['user_display'];
+             $_SESSION['login_stat'] = $rows['user_status'];
+             $_SESSION['login_time'] = $rows['user_lasttime'];
+             header("location: http://movie.technologyofkevin.com/movie.php");
+           } else {
+             header("location: http://movie.technologyofkevin.com/index.php?er=3");
+           }
+
          } else {
            $headerURL = "http://movie.technologyofkevin.com/check.php?N=" . $rows['user_display'];
            header("location: $headerURL");
          }
 
        } else {
-         header("location: http://movie.technologyofkevin.com/index.php?er=1");
+         header("location: http://movie.technologyofkevin.com/index.php?er=2");
        }
 
      } else {
        $error = 1;
-       header("location: http://movie.technologyofkevin.com/index.php?er=2");
+       header("location: http://movie.technologyofkevin.com/index.php?er=1");
     }
   }
 ?>

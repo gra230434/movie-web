@@ -8,7 +8,11 @@
    if(isset($_GET['er'])) {
       // username and password sent from form
       $usererror = $_GET['er'];
-      $error = $errormessage[$usererror];
+      if ( $usererror > 3 || $usererror < 1 ) {
+        header("http://movie.technologyofkevin.com/");
+      } else {
+        $error = $errormessage[$usererror];
+      }
    }
 ?>
 
