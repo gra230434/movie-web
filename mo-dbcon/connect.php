@@ -9,3 +9,5 @@ if (mysqli_connect_errno($db)) {
   echo "connect MySQL fail: " . mysqli_connect_error();
   exit();
 }
+
+mysqli_query($db, "SET NAMES UTF8");

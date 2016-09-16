@@ -18,7 +18,7 @@
        if( password_verify( $password ,$rows['user_pass']) ) {
 
          if ( $rows['user_status'] < 6 ) {
-           $whattime = date("Y-m-d");;
+           $whattime = date("Y-m-d h:i:sa");;
            $sql = "UPDATE movie_users SET user_lasttime='$whattime' WHERE user_login = '$username'";
 
            if( mysqli_query($db,$sql) ) {

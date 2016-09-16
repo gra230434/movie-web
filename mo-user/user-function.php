@@ -1,6 +1,6 @@
 <?php
 
-  require( dirname(__FILE__) . '/../mo-dbcon/mo-config.php' );
+  require_once( dirname(__FILE__) . '/../mo-dbcon/connect.php' );
 
   /**
    * check_status : check user status only let status<5

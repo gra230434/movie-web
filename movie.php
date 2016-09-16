@@ -11,34 +11,41 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script type="text/javascript">
     function loadvideo( videoname ){
-      var xmlhttp=new XMLHttpRequest();
-      xmlhttp.onreadystatechange=function(){
-        if (xmlhttp.readyState==4 && xmlhttp.status==200){
-          var returntitle = JSON.parse(xmlhttp.responseText);
-
-          document.getElementById("videolist").innerHTML = buttoncreate(returntitle);
+      $.ajax({
+        type        : 'GET', // define the type of HTTP verb we want to use (POST for our form)
+        url         : 'video.php', // the url where we want to POST
+        data        : "V=" + videoname, // our data object
+      })
+      .done(function(data){
+        if ( data.success ) {
+          $('#animationtitle').html( data.videotitle );
+          $('#videolist').html( buttoncreate( data.videoname, data.videodir ) );
         }
-      }
-      xmlhttp.open("GET","video.php?V=" + videoname ,true);
-      xmlhttp.send();
-    }
+      });
+      event.preventDefault();
+    };
 
-    function buttoncreate( arr ){
+    function buttoncreate( arr, defpath ){
       var returnbutton = "";
-      var path = arr[0].replace("./","");
-      for (var i = 1; i < arr.length; i++) {
-        var before = "<button type='button' onclick=changevideosrc('" + path + arr[i] + "')>";
-        var after = "</button>";
+      for (var i = 0; i < arr.length; i++) {
         var stringvalue = arr[i].substr(0,2);
+        var before = "<button type='button' value='" + stringvalue + "' onclick=changevideosrc('" + defpath + "/" + arr[i] + "',this)>";
+        var after = "</button>";
+
         returnbutton = returnbutton.concat(before,stringvalue,after);
       }
       return returnbutton;
     }
 
-    function changevideosrc( newsrc ){
+    function changevideosrc( newsrc, video ){
+      var elem = document.getElementById('animationnum');
+      if(typeof elem !== 'undefined' && elem !== null) {
+        document.getElementById('animationnum').innerHTML = video.value;
+      }
       document.getElementById('animationvideo_source').src = newsrc;
-      document.getElementById("animationvideo").load();
+      document.getElementById('animationvideo').load();
     }
+
     </script>
 </head>
 
@@ -46,42 +53,48 @@
   <div class="sitepage">
     <header class="movieheader">
       <h1>私人動漫天地</h1>
-      <p>Welcome <?php echo username($_SESSION['login_user'],$_SESSION['login_disp']); ?></p>
-      <p>你上次登入系統是在 <?php echo $_SESSION['login_time'] ?></p>
-      <ul class="drop-down-menu">
-        <li><a href="logout.php">登出</a></li>
-        <li><a href="http://movie.technologyofkevin.com/mo-user/">使用者</a></li>
-        <li><a href="http://movie.technologyofkevin.com/mo-admin/">管理者</a></li>
-      </ul>
+      <div class="toright">
+        <div class="theptad">
+          <p>Welcome <?php echo username($_SESSION['login_user'],$_SESSION['login_disp']); ?></p>
+          <div class="clear"></div>
+        </div>
+        <div class="theptad">
+          <p>你上次登入系統是在 <?php echo $_SESSION['login_time'] ?></p>
+          <div class="clear"></div>
+        </div>
+        <div id="navmenu">
+          <ul class="drop-down-menu">
+            <li><a class="active" href="movie.php">影片</a></li>
+            <li><a href="logout.php">登出</a></li>
+            <li><a href="/mo-user/">使用者</a></li>
+            <li><a href="/mo-admin/">管理者</a></li>
+          </ul>
+        </div><!-- #navmenu -->
+      </div>
+      <div class="clear"></div>
     </header>
+
+    <div class="masterbar">
+      <div id="videopart" class="videopart">
+        <div style="height:76px">
+          <h2 id="animationtitle" style="float:left;">測試影片</h2><h2 id="animationnum" style="float:left;margin-left:15px;"></h2>
+        </div>
+        <video id="animationvideo" controls  width="1280" height="720">
+          <source id="animationvideo_source" src="big_buck_bunny.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div id="videolist"></div>
+      </div><!-- videopart -->
+    </div><!-- masterbar -->
+
     <div class="sidebar">
       <h2>Animation List</h2>
+      <div id='animationlist'>
       <?php
-        echo ("<div id='animationlist'>");
-        $postnum = 1;
-        foreach (glob("./video/*") as $videoname){
-          $postid = "post" . $postnum;
-          $videoname = str_replace("./video/","",$videoname);
-          echo ("<h3 id='" . $postid . " videotitle'>");
-          echo ( $videoname );
-          echo ("</h3>");
-          $videoname = str_replace("./video/","",$videoname);
-          $videoname = "'" . $videoname . "'";
-          echo ('<button type="button" onclick="loadvideo( ' . $videoname . ' )">load video</button>');
-          $postnum++;
-        }
-        echo ("</div><!-- .animationlist -->");
-        ?>
-      <div id="myDiv"></div>
+      video_all_list();
+      ?>
+      </div><!-- .animationlist -->
     </div><!-- .sidebar -->
-
-    <div id="videopart" class="videopart masterbar">
-      <video id="animationvideo" controls  width="720" height="480">
-        <source id="animationvideo_source" src="big_buck_bunny.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div id="videolist"></div>
-    </div>
 
   </div>
 </body>

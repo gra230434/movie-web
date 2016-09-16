@@ -144,13 +144,17 @@ optgroup {
 	font-weight: bold;
 }
 
+.clear {
+	clear: both;
+}
+
 /**
  * 2.0 sitepage
  *
  */
 .sitepage {
 	width: 80%;
-	margin: 20px auto;
+	margin: 40px auto;
 }
 
 #loginpagebody {
@@ -246,7 +250,7 @@ optgroup {
  *
  */
 .movieheader {
-	height: 50px;
+	height: auto;
 }
 
 .movieheader h1 {
@@ -254,17 +258,76 @@ optgroup {
 	font-size: 38px;
 }
 
-.movieheader p {
+.movieheader .toright {
+	width: 500px;
 	float: right;
-	font-size: 38px;
+}
+
+.movieheader .theptad {
+	width: 100%;
+}
+
+.movieheader .theptad p {
+	float: right;
+	font-size: 18px;
+	margin: 5px 0;
+}
+
+#navmenu {
+	margin-top: 10px;
+}
+
+#navmenu ul {
+	list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+#navmenu li {
+  float: left;
+}
+
+#navmenu li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+#navmenu li a:hover:not(.active) {
+  background-color: #111;
+}
+
+#navmenu .active {
+  background-color: #4CAF50;
 }
 
 .sidebar {
-	width: 25%;
+	width: 100%;
  	float: left;
 }
 
 .masterbar {
- 	width: 74%;
+ 	width: 100%;
  	float: left;
+}
+
+.videopart {
+	width: 1280px;
+	margin: 0 auto;
+}
+
+#videolist button {
+	padding: 10px 14px;
+	background-color: white;
+	margin: 5px;
+	border: 2px solid white;
+}
+
+#videolist button:hover {
+	background-color: #1a75ff;
+	color: #ffffff;
 }

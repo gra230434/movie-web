@@ -41,7 +41,6 @@
                   </tr></thead>");
        printf ("<tbody>");
        while ( $row = mysqli_fetch_row($result) ){
-         echo $row;
          $lastdate = empty($row[2])?$row[2]:'No login';
          printf ("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>",
          $row[0],$row[5],$row[1],$row[3],$lastdate);
