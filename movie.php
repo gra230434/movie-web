@@ -28,7 +28,7 @@
     function buttoncreate( arr, defpath ){
       var returnbutton = "";
       for (var i = 0; i < arr.length; i++) {
-        var stringvalue = arr[i].substr(0,2);
+        var stringvalue = arr[i].substr(1,2);
         var before = "<button type='button' value='" + stringvalue + "' onclick=changevideosrc('" + defpath + "/" + arr[i] + "',this)>";
         var after = "</button>";
 
@@ -84,8 +84,8 @@
           Your browser does not support the video tag.
         </video>
         <div id="videolist"></div>
-      </div><!-- videopart -->
-    </div><!-- masterbar -->
+      </div><!-- #videopart -->
+    </div><!-- .masterbar -->
 
     <div class="sidebar">
       <h2>Animation List</h2>
@@ -95,7 +95,7 @@
       ?>
       </div><!-- .animationlist -->
     </div><!-- .sidebar -->
-
-  </div>
+    <div class="clear"></div>
+  </div><!-- .sitepage -->
 </body>
 </html>

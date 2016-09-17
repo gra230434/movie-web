@@ -21,7 +21,7 @@
             if ( $dh = opendir($videodir) ) {
 
               while (($file = readdir($dh)) !== false) {
-                if ( $file == '.' || $file == '..' ) { continue; }
+                if ( $file == '.' || $file == '..' || $file == 'over.jpg' ) { continue; }
                 else {  $videoname[] = $file; }
               }
               closedir( $dh );

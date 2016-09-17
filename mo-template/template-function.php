@@ -30,9 +30,14 @@
       if ( $result = mysqli_query($db,$sql) ){
         if ( mysqli_num_rows($result)>=1 ) {
           while ( $row = mysqli_fetch_array($result) ){
+            $path = ltrim( strstr($row['movie_path'], "/"), "/" );
+            $img  = "video/". $path . "/over.jpg";
+            $path = "'" . $path . "'";
+
+            echo '<div id="' . $num . '_video" class="videobox" style="background-image: url(' . $img . ')" onclick="loadvideo(' . $path . ')">';
+            //echo "<div id='".$num."_video' class'videobox' style='background-image: url('";
             echo "<h3>" . $row['movie_TCname'] . "</h3>";
-            $path = "'" . ltrim( strstr($row['movie_path'], "/"), "/" ) . "'";
-            echo '<button type="button" onclick="loadvideo( ' . $path . ' )">load</button>';
+            echo "</div>";
           }
         } else {
           printf ("Have no any video");
