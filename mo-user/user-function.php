@@ -10,10 +10,11 @@
    * @since movie system 1.2
    */
    function check_status( $username ){
+     Global $db;
      $sql = "SELECT user_status FROM movie_users WHERE user_login='$username'";
      if ( $result = mysqli_query($db,$sql) ){
        $row = mysqli_fetch_row($result);
-       if ( $row['user_status']<5 ) {
+       if ( $row[0]<5 ) {
          return 1;
        } else {
          return 0;
@@ -29,6 +30,7 @@
    * @since movie system 1.2
    */
    function user_showuser( $username ){
+     Global $db;
      $sql = "SELECT ID, user_login, user_lasttime, user_display FROM movie_users WHERE user_login=$username";
      if ( $result = mysqli_query($db,$sql) ){
        printf ("<tbody>");

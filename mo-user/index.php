@@ -18,8 +18,6 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <?php
-    admin_showuser();
-  ?>
+
 </body>
 </html>
